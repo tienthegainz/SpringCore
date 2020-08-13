@@ -9,6 +9,7 @@ import app.aspect.LoggingAspect;
 import app.aspect.TransactionAspect;
 import app.dao.DeveloperDAO;
 import app.dao.impl.DeveloperDAOImpl;
+
 import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("app.*")
 @Aspect
 @EnableAspectJAutoProxy
-@Import({LoggingAspect.class, TransactionAspect.class})
+@Import({LoggingAspect.class})
 @EnableTransactionManagement
 @PropertySource("ds-hibernate-cfg.properties")
 public class ApplicationContextConfig {
@@ -81,6 +82,5 @@ public class ApplicationContextConfig {
     public DeveloperDAO getDeveloperDAO() {
         return new DeveloperDAOImpl();
     }
-
 
 }

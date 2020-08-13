@@ -19,6 +19,10 @@ public class App {
 
 //        dao.addDeveloper("O", 15, "Intern");
 
+        dao.findByPosition("Dev");
+
+        dao.loadStudents();
+
         try {
             dao.throwException();
         } catch (Exception e) {

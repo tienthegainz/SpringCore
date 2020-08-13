@@ -17,6 +17,9 @@ public class LoggingAspect {
     public void anyDAOMethod(){
     }
 
+    @Pointcut("@annotation(org.springframework.transaction.annotation.Transactional)")
+    public void anyDbChangeMethod(){}
+
 
     @Before("anyDAOMethod()")
     public void logDAOMethod(JoinPoint jp){
@@ -39,13 +42,9 @@ public class LoggingAspect {
         return output;
     }
 
-//    @Around("anyDAOMethod()")
-//    public void profile(ProceedingJoinPoint pjp) throws Throwable {
-//        long start = System.currentTimeMillis();
-//        logger.info("Going to call the method " + pjp.toShortString());
-//        pjp.proceed();
-//        long elapsedTime = System.currentTimeMillis() - start;
-//        logger.info(pjp.toShortString()+" execution time: " + elapsedTime + " milliseconds.");
-//        return;
-//    }
+    @Before("anyDbChangeMethod()")
+    public void logTransaction(JoinPoint jp){
+        logger.info("Transaction operation start");
+    }
+
 }
