@@ -14,21 +14,22 @@ public class LoggingAspect {
     private static final Logger logger = Logger.getLogger(LoggingAspect.class);
 
     @Pointcut("execution(* app.dao.*.*(..))")
-    public void anyDAOMethod(){
+    public void anyDAOMethod() {
     }
 
     @Pointcut("@annotation(org.springframework.transaction.annotation.Transactional)")
-    public void anyDbChangeMethod(){}
+    public void anyDbChangeMethod() {
+    }
 
 
     @Before("anyDAOMethod()")
-    public void logDAOMethod(JoinPoint jp){
+    public void logDAOMethod(JoinPoint jp) {
         String s = String.format("DAO method signature: %s", jp.getSignature());
         logger.info(s);
     }
 
     @AfterThrowing(value = "anyDAOMethod()", throwing = "ex")
-    public void logDAOError(Throwable ex){
+    public void logDAOError(Throwable ex) {
         logger.error("DAO method throwed Exception: " + ex);
     }
 
@@ -38,12 +39,12 @@ public class LoggingAspect {
         logger.info("Going to call the method " + pjp.toShortString());
         Object output = pjp.proceed();
         long elapsedTime = System.currentTimeMillis() - start;
-        logger.info(pjp.toShortString()+" execution time: " + elapsedTime + " milliseconds.");
+        logger.info(pjp.toShortString() + " execution time: " + elapsedTime + " milliseconds.");
         return output;
     }
 
     @Before("anyDbChangeMethod()")
-    public void logTransaction(JoinPoint jp){
+    public void logTransaction(JoinPoint jp) {
         logger.info("Transaction operation start");
     }
 

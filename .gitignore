@@ -9,3 +9,4 @@ projectName.iml
 /local.properties
 target/
 log/
+src/main/resources
