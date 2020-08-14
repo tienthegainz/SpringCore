@@ -46,14 +46,14 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public List<Developer> loadStudents() {
+    public List<Developer> loadDevelopers() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM Developer").getResultList();
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addDeveloper(String name, Integer age, String position) {
+    public void addDeveloper(String name, Integer age, String position) throws Exception {
         try {
             Session session = sessionFactory.getCurrentSession();
             Developer newDev = new Developer(name, age, position);
@@ -69,8 +69,9 @@ public class DeveloperDAOImpl implements DeveloperDAO {
             }
         } catch (Exception e) {
             logger.info(e.getMessage());
+            throw new RuntimeException("Value not allow");
         }
-
+        return;
     }
 
     @MyAnnotation

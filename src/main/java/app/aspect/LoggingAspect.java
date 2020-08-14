@@ -40,6 +40,7 @@ public class LoggingAspect {
         Object output = pjp.proceed();
         long elapsedTime = System.currentTimeMillis() - start;
         logger.info(pjp.toShortString() + " execution time: " + elapsedTime + " milliseconds.");
+
         return output;
     }
 

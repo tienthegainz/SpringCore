@@ -8,9 +8,9 @@ public interface DeveloperDAO {
 
     public List<Developer> findByPosition(String position);
 
-    public List<Developer> loadStudents();
+    public List<Developer> loadDevelopers();
 
-    public void addDeveloper(String name, Integer age, String position);
+    public void addDeveloper(String name, Integer age, String position) throws Exception;
 
     public void throwException() throws Exception;
 
