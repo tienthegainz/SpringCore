@@ -17,11 +17,11 @@ public class App {
         ApplicationContext app = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
         DeveloperDAO dao = (DeveloperDAO) app.getBean("developerDAO");
 
-//        dao.addDeveloper("O", 15, "Intern");
+        dao.addDeveloper(null, 15, "Intern");
 
-        dao.findByPosition("Dev");
+//        dao.findByPosition("Dev");
 
-        dao.loadStudents();
+//        dao.loadStudents();
 
         try {
             dao.throwException();
